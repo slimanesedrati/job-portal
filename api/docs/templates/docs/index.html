@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobPortal Api Documentation</title>
+    <style>
+        body{
+            background-color: #f1f1f1;
+            font-family: 'Syne Mono', sans-serif;
+        }
+        ul{
+            list-style: none;
+        }
+        .container{
+            margin-inline: auto;
+            max-width: 1000px;
+        }
+        .flex{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .btn {
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JobPortal Api Documentation</h1>
+        <div class="flex">
+            <h3>Api Endpoints</h3>
+            <a class="btn" href="./api/">Api Root</a>
+        </div>
+        <h4>1. Company app:</h4>
+        <ul>
+            <li>
+                * api/companies -> get companies listing 
+                <a class="link" href='{% url "companies_list" %}'>Test</a>
+            </li>
+            <li>
+                * api/companies/search?query=search_query -> search company
+                <a class="link" href='{% url "company_search"%}?query=google'>Test</a>
+            </li>
+            <li>
+                * api/companies/pk -> Company details and informations
+                <a class="link" href='{% url "company_detail" pk=1 %}'>Test</a>
+            </li>
+            <li>
+                * api/companies/pk/jobs -> Companies Jobs listing
+                <a class="link" href='{% url "company_job_list" pk=1 %}'>Test</a>
+            </li>
+        </ul>
+        <h4>2. Jobs app:</h4>
+        <ul>
+            <li>
+                * api/jobs -> Jobs listing
+            </li>
+            <li>
+                * api/jobs/search?query=search_query -> search
+            </li>
+            <li>
+                * api/jobs/job_id -> get job details | Job's 'CRUD' if authenticated
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
