@@ -24,6 +24,11 @@ Install requirements
 
 	pip install -r requirements.txt
 
+Database configuration
+
+	py .\manage.py migrate
+    py .\manage.py loaddata states.json
+
 Run server on localhost
 
-	py manage.py runserver
+	py .\manage.py runserver

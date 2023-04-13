@@ -7,6 +7,18 @@ class Sector(models.Model):
     views_count = models.IntegerField(null=True, blank=True, default=0)
     def __str__(self) -> str:
         return self.name
+
+class Location(models.Model):
+    code = models.IntegerField(blank=True)
+    name = models.CharField(max_length=200, blank=True)
+    ar_name = models.CharField(max_length=200, blank=True)
+    longitude = models.CharField(max_length=50, null=True, blank=True)
+    latitude = models.CharField(max_length=50, null=True, blank=True)
+    class Meta:
+        ordering=['name']
+    
+    def __str__(self) -> str:
+        return self.name
     
 
 class Student(models.Model):
@@ -42,7 +54,7 @@ class Company(models.Model):
     cover = models.ImageField(upload_to='images', blank=True)
 
     website = models.URLField(blank=True)
-    location = models.CharField(max_length=255, blank=True)
+    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     
     def __str__(self) -> str:
         return self.name
@@ -59,14 +71,14 @@ class Offer(models.Model):
 
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, help_text='Description about the offer')
-    salary = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
+    salary = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
 
     offer_type = models.CharField(max_length=1, choices=OFFER_TYPE_CHOICES, default=INTERSHIP)
     sector = models.ForeignKey(Sector, on_delete=models.CASCADE, related_query_name='Offer')
     educationLevel = models.CharField(max_length=100, blank=True)
     
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
     
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

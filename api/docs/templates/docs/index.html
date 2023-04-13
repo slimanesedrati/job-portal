@@ -63,7 +63,8 @@
                 * api/jobs -> Jobs listing
             </li>
             <li>
-                * api/jobs/search?query=search_query -> search
+                * api/jobs/search?query=search_query -> search and filter
+                <a class="link" href='{% url "job_search" %}?query=python&location=oran&offer_type=full-time&sector=IT&min_salary=5000&max_salary=10000'>Test</a>
             </li>
             <li>
                 * api/jobs/job_id -> get job details | Job's 'CRUD' if authenticated
