@@ -6,6 +6,16 @@
 [UML Class](https://lucid.app/lucidchart/84d27aad-c3a6-4900-bb72-a0c722a8921b/edit?viewport_loc=-676%2C-492%2C4440%2C2092%2CHWEp-vi-RSFO&invitationId=inv_9282cf6f-ad8e-45dc-a529-187811c8b9cc)
 
 
+Templates
+
+|  #  | Template                                                                                                    | Live Demo                                                   |
+| :-: | ---------------------------------------------------------------------------------------------------------- | -----------------------------------------------
+| 01  |       [Home Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/home.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/home.html) |
+| 02  |       [jobs Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/jobs.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/jobs.html) |
+| 03  |       [Company Profile Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/company_profile.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/company_profile.html) |
+
+
+
 ## Run project on localhost
 **1. Clone project**
 
