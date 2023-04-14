@@ -119,4 +119,3 @@ function navToggle() {
   menu.classList.toggle('hidden')
 }
 
-
