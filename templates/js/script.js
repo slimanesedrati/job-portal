@@ -29,7 +29,7 @@ function onTabClick(e) {
 
   const classString = e.target.getAttribute('data-target')
 
-  document
+  const a = document
   .getElementById('panels')
   .getElementsByClassName(classString)[0]
   .classList.remove('hidden')
@@ -118,4 +118,5 @@ function navToggle() {
   menu.classList.toggle('flex')
   menu.classList.toggle('hidden')
 }
+
 
