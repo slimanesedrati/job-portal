@@ -1,3 +1,25 @@
+const email = document.getElementById('email')
+const label_email = document.getElementById('label_email') 
+
+const password = document.getElementById('password')
+const label_password = document.getElementById('label_password') 
+
+email.addEventListener('focus',()=> {
+  label_email.classList.add('text-accentBlue')
+})
+email.addEventListener('focusout',()=> {
+  label_email.classList.remove('text-accentBlue')
+})
+password.addEventListener('focus',()=> {
+  label_password.classList.add('text-accentBlue')
+})
+password.addEventListener('focusout',()=> {
+  label_password.classList.remove('text-accentBlue')
+})
+
+
+// #############################################
+
 const tabs = document.querySelectorAll('.tab')
 const panels = document.querySelectorAll('.panel')
 
@@ -118,5 +140,8 @@ function navToggle() {
   menu.classList.toggle('flex')
   menu.classList.toggle('hidden')
 }
+
+
+// ####################
 
 
