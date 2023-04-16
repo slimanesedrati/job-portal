@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> acc75e009f15f2b4aa4e09f812ce9d1bc251ea16
 
 // #############################################
 
@@ -135,7 +131,6 @@ const label_email = document.getElementById('label_email')
 const password = document.getElementById('password')
 const label_password = document.getElementById('label_password') 
 
-<<<<<<< HEAD
 email.addEventListener('focus',changeCone)
 email.addEventListener('focusout',changeCtwo)
 password.addEventListener('focus',changeCthree)
@@ -161,18 +156,4 @@ function changeCfour() {
   label_password.classList.remove('text-accentBlue')
 }
 
-=======
-email.addEventListener('focus',()=> {
-  label_email.classList.add('text-accentBlue')
-})
-email.addEventListener('focusout',()=> {
-  label_email.classList.remove('text-accentBlue')
-})
-password.addEventListener('focus',()=> {
-  label_password.classList.add('text-accentBlue')
-})
-password.addEventListener('focusout',()=> {
-  label_password.classList.remove('text-accentBlue')
-})
->>>>>>> acc75e009f15f2b4aa4e09f812ce9d1bc251ea16
 
