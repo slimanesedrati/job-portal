@@ -13,7 +13,7 @@
 | 01  |       [Home Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/home.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/home.html) |
 | 02  |       [jobs Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/jobs.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/jobs.html) |
 | 03  |       [Company Profile Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/company_profile.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/company_profile.html) |
-| 04  |       [User SignUp Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/user_signup.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/user_signup.html) |
+| 04  |       [User Register Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/user_signup.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/user_signup.html) |
 
 ## Run project on localhost
 **1. Clone project**
