@@ -125,35 +125,35 @@ function navToggle() {
 
 // ####################
 
-const email = document.getElementById('email')
-const label_email = document.getElementById('label_email') 
+// const email = document.getElementById('email')
+// const label_email = document.getElementById('label_email') 
 
-const password = document.getElementById('password')
-const label_password = document.getElementById('label_password') 
+// const password = document.getElementById('password')
+// const label_password = document.getElementById('label_password') 
 
-email.addEventListener('focus',changeCone)
-email.addEventListener('focusout',changeCtwo)
-password.addEventListener('focus',changeCthree)
-password.addEventListener('focusout',changeCfour)
+// email.addEventListener('focus',changeCone)
+// email.addEventListener('focusout',changeCtwo)
+// password.addEventListener('focus',changeCthree)
+// password.addEventListener('focusout',changeCfour)
 
-function changeCone() {
-  label_email.classList.add('text-accentBlue')
-}
-
-
-
-function changeCtwo() {
-  label_email.classList.remove('text-accentBlue')
-}
+// function changeCone() {
+//   label_email.classList.add('text-accentBlue')
+// }
 
 
-function changeCthree() {
-  label_password.classList.add('text-accentBlue')
-}
+
+// function changeCtwo() {
+//   label_email.classList.remove('text-accentBlue')
+// }
 
 
-function changeCfour() {
-  label_password.classList.remove('text-accentBlue')
-}
+// function changeCthree() {
+//   label_password.classList.add('text-accentBlue')
+// }
+
+
+// function changeCfour() {
+//   label_password.classList.remove('text-accentBlue')
+// }
 
 
