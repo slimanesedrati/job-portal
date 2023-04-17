@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <link
+      rel="shortcut icon"
+      type="image/png"
+      href="images/favicon-32x32.png"
+    /> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alata&family=Poppins:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/output.css" />
+  <script src="js/script.js" defer></script>
+  <title>GetIntern</title>
+</head>
+
+<body>
+  <!-- nav -->
+  <div class="sticky top-0 bg-white z-20 border-b">
+    <!-- Nav Container -->
+    <nav class="container mx-auto p-4 z-10">
+      <!-- Flex Container For All Items -->
+      <div class="flex items-center justify-between">
+        <!-- Flex Container For Logo/Menu -->
+        <div class="flex items-center space-x-20">
+          <!-- Logo -->
+          <h1 class="font-bold text-xl text-blue">
+            <a href="">GetIntern</a>
+          </h1>
+          <!-- Left Menu -->
+          <div class="hidden text-sm space-x-8 font-bold lg:flex">
+            <a href="#" class="text-mediumGray hover:text-darkGray">Jobs</a>
+            <a href="#" class="text-mediumGray hover:text-darkGray">Interships</a>
+            <a href="#" class="text-mediumGray hover:text-darkGray">About Us</a>
+          </div>
+        </div>
+
+        <!-- Right Buttons Menu -->
+        <div class="hidden items-center space-x-6 font-medium text-grayishViolet lg:flex">
+          <div id="userN" class="relative text-darkGray">
+            <div class="flex text-xs select-none justify-center items-center cursor-pointer">
+              Hi,Slimane!
+              <svg xmlns="http://www.w3.org/2000/svg" class="duration-200" id="down" width="18" height="18"
+                viewBox="0 0 24 24" fill="none">
+                <path d="M10.869 16.6308C10.811 16.5743 10.563 16.3609 10.359 16.1622C9.076
+            14.9971 6.976 11.9576 6.335 10.3668C6.232 10.1252 6.014 9.51437
+            6 9.18802C6 8.8753 6.072 8.5772 6.218 8.29274C6.422 7.93814
+            6.743 7.65368 7.122 7.49781C7.385 7.39747 8.172 7.2416 8.186 7.2416C9.047 
+            7.08573 10.446 7 11.992 7C13.465 7 14.807 7.08573 15.681 7.21335C15.695 7.22796
+            16.673 7.38383 17.008 7.55431C17.62 7.86702 18 8.47784 18 9.13151V9.18802C17.985
+            9.61374 17.605 10.509 17.591 10.509C16.949 12.0141 14.952 14.9834 13.625 16.1768C13.625 16.1768 13.284 16.5129 13.071 16.659C12.765 16.887 12.386 17 12.007 
+            17C11.584 17 11.19 16.8724 10.869 16.6308Z" fill="darkGray" />
+              </svg>
+            </div>
+            <div id="settings"
+              class="absolute text-xs flex flex-col -right-4 top-8 rounded-md items-center justify-center space-y-2 py-4 bg-white z-40 shadow-lg w-36 hidden">
+              <a href="" class="duration-200 border-b pb-2 hover:text-lightGray">Settings</a>
+              <a href="" class="duration-200 hover:text-gray-400">Logout</a>
+              <div></div>
+            </div>
+          </div>
+          <div>
+            <a href=""
+              class="flex justify-center text-xs items-center duration-200 text-blue hover:underline underline-offset-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+                <path d="M18 3V5H17V11L19 14V16H13V23H11V16H5V14L7 11V5H6V3H18Z" fill="rgba(0,119,181,1)"></path>
+              </svg>
+              Post Listing
+            </a>
+          </div>
+        </div>
+
+        <!-- Hamburger Button -->
+
+        <div class="flex lg:hidden  space-x-10 items-center justify-center">
+          <button id="menu-btn" class="hamburger lg:hidden focus:outline-none" type="button">
+            <span class="hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="menu" class="absolute hidden z-40 p-6 rounded-lg bg-darkGray left-6 right-6 top-20 z-100">
+        <div
+          class="relative pt-8 flex flex-col items-center justify-center w-full space-y-6 font-bold text-white rounded-sm">
+          <a href="" class="absolute top-0 left-0 text-accentBlue text-lg">Hi,Slimane!</a>
+          <a href="#" class="w-full text-center">Jobs</a>
+          <a href="#" class="w-full text-center">Interships</a>
+          <a href="#" class="w-full text-center pb-6 border-b">About Us</a>
+          <a href="#" class="w-full py-3 text-center rounded-full bg-red">Login out</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!--  -->
+  <section class="bg-lightbg min-h-screen ">
+    <div class="container max-w-6xl mx-auto pb-6 flex flex-col sm:p-6 md:flex-row items-center md:items-stretch  space-y-10 md:space-y-0  md:space-x-5 ">
+        <div class="flex flex-col justify-center max-w-full sm:max-w-sm items-center rounded-lg p-8 bg-white ">
+            <div class="space-y-4 ">
+                <div class="flex flex-col justify-center items-center">
+                    <div class="w-28 h-28 rounded-full" style="background-image: url(assets/images/prodilepic.jpg);background-repeat: no-repeat;background-size: cover;background-position: center;"></div>
+                    <h5 class=" text-blue">slimane sedrati</h5>
+                    <span class="text-mediumGray text-sm">software engineer</span>
+                </div>
+                <p class="leading-5 text-center text-xs">
+                    Design, modify, develop, write and implement software programming applications. Support and/or install software applications/operating systems. Participate in the testing process through test review and analysis,test witnessing and certification of software.
+                </p>
+                <div class="space-y-3">
+                    <h5 class="">skills</h5>
+                    <div class="flex  flex-wrap justify-center sm:justify-start items-center gap-3 text-center text-sm text-accentBlue font-medium capitalize">
+                        <span class="py-2 px-3  bg-lightbg rounded-full border border-gray-300">good research</span>
+                        <span class="py-2 px-3  bg-lightbg rounded-full border border-gray-300">problem solver</span>
+                        <span class="py-2 px-3  bg-lightbg rounded-full border border-gray-300">Html</span>
+                        <span class="py-2 px-3  bg-lightbg rounded-full border border-gray-300">Css</span>
+                        <span class="py-2 px-3  bg-lightbg rounded-full border border-gray-300">Vs Code</span>
+                    </div>
+                </div>
+                <form action="" method="" class="flex flex-col space-y-3">
+                    <h5>add notes</h5>
+                    <input type="text" class="w-full p-2 pb-10 border focus:outline-none duration-75 rounded-sm focus:border-blue placeholder:text-sm" placeholder="Add notes for future refrence">
+                    <button class="btn w-full capitalize">add note</button>
+                </form>
+            </div>
+        </div>
+        <div class="flex flex-col items-center space-y-5 font-semibold w-full">
+            <div class="bg-white max-w-sm md:max-w-full p-5 text-darkGray space-y-5 rounded-lg">
+                <h5 class="p-0">basic inforamtion</h5>
+                <div class="flex flex-wrap justify-between  gap-y-5 p-4">
+                    <div class="space-y-1 w-full lg:w-1/2">
+                        <div class="uppercase text-mediumGray">age</div>
+                        <div class="">23 years</div>
+                    </div>
+                    <div class="space-y-1 w-full lg:w-1/2">
+                        <div class="uppercase text-mediumGray">years of experience</div>
+                        <div class="">2 years</div>
+                    </div>
+                    <div class="space-y-1 w-full lg:w-1/2">
+                        <div class="uppercase text-mediumGray">location</div>
+                        <div class="">Bordj Bou Arreridj, Algeria</div>
+                    </div>
+                    <div class="space-y-1 w-full lg:w-1/2">
+                        <div class="uppercase text-mediumGray">email</div>
+                        <div class="">sliamne.sedrati@univ-bba.dz</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white w-full max-w-sm md:max-w-full p-5 pr-2 flex-col space-y-5">
+              <h5 class="p-0">experience</h5>
+              <div class="flex items-center space-x-2 lg:space-x-10 border-b pb-5 w-full">
+                <div class="uppercase w-20 h-20 rounded-full flex justify-center items-center bg-gray-300 text-white text-2xl font-medium">
+                  Ap
+                </div>
+                <div>
+                  <div class="text-blue capitalize">
+                    apple
+                  </div>
+                  <div class="text-gray-600 font-medium capitalize">frontend dev</div>
+                  <p class="text-xs font-normal">Apr 2022 - Present | msila, algeria</p>
+                </div>
+              </div>
+              <!--  -->
+              <div class="flex items-center space-x-2 lg:space-x-10 border-b pb-5 w-full">
+                <div class="uppercase w-20 h-20 rounded-full flex justify-center items-center bg-blue text-white text-2xl font-medium">
+                  Fb
+                </div>
+                <div>
+                  <div class="text-blue capitalize">
+                    facebook
+                  </div>
+                  <div class="text-gray-600 font-medium capitalize">backtend dev</div>
+                  <p class="text-xs font-normal">Apr 2018 - oct 2019 | Setfif, algeria</p>
+                </div>
+              </div>
+              <!--  -->
+              <div class="flex items-center space-x-2 lg:space-x-10  w-full">
+                <div class="uppercase w-20 h-20 rounded-full flex justify-center items-center bg-red text-white text-2xl font-medium">
+                  nt
+                </div>
+                <div>
+                  <div class="text-blue capitalize">
+                    Netflix
+                  </div>
+                  <div class="text-gray-600 font-medium capitalize">Ui/Ux Designer</div>
+                  <p class="text-xs font-normal">Apr 2016 - oct 2018 | Setfif, algeria</p>
+                </div>
+              </div>
+            </div>
+            <div class="w-full bg-white p-5 rounded-lg flex justify-between items-center">
+              <h5 class="p-0">Education</h5>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z" fill="rgba(0,0,0,1)"></path></svg>
+            </div>
+            <div class="w-full bg-white p-5 rounded-lg flex justify-between items-center">
+              <h5 class="p-0">Certification</h5>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z" fill="rgba(0,0,0,1)"></path></svg>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-16 bg-veryDarkViolet">
+    <div
+      class="container px-6 flex flex-col items-center justify-between mx-auto space-y-16 md:flex-row md:space-y-0 md:items-start">
+      <!-- Logo -->
+      <h1 class="font-bold text-3xl text-white">
+        <a href="">GetIntern</a>
+      </h1>
+
+      <!-- Menus Container -->
+      <div class="flex flex-col space-y-16 md:space-x-20 md:flex-row md:space-y-0">
+        <!-- Menu 1 -->
+        <div class="flex flex-col items-center w-full md:items-start">
+          <div class="mb-5 font-bold text-white capitalize">Features</div>
+          <div class="flex flex-col items-center space-y-3 md:items-start">
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">Link shortening</a>
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">Branded links</a>
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">Analytics</a>
+          </div>
+        </div>
+
+        <!-- Menu 2 -->
+        <div class="flex flex-col items-center w-full md:items-start">
+          <div class="mb-5 font-bold text-white capitalize">Resources</div>
+          <div class="flex flex-col items-center space-y-3 md:items-start">
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">Blog</a>
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">Developers</a>
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">Support</a>
+          </div>
+        </div>
+
+        <!-- Menu 3 -->
+        <div class="flex flex-col items-center w-full md:items-start">
+          <div class="mb-5 font-bold text-white capitalize">Company</div>
+          <div class="flex flex-col items-center space-y-3 md:items-start">
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">About</a>
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">Our Team</a>
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">Careers</a>
+            <a href="#" class="capitalize text-grayishViolet hover:text-cyan">Contact</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Container -->
+      <div class="flex space-x-6">
+        <a href="#">
+          <img src="assets/images/facebook.svg" alt="" class="ficon" />
+        </a>
+        <a href="#">
+          <img src="assets/images/meta.svg" alt="" class="ficon" />
+        </a>
+        <a href="#">
+          <img src="assets/images/apple.svg" alt="" class="ficon" />
+        </a>
+        <a href="#">
+          <img src="assets/images/instagram.svg" alt="" class="ficon" />
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

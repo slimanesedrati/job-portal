@@ -108,14 +108,14 @@ function hidde_search(){
     search_form.classList.toggle('hidden')
 }
 
-
-// #################################################
+// ########################################
 const btn = document.getElementById('menu-btn')
 const menu = document.getElementById('menu')
 
+// Toggle Mobile Menu
+
 btn.addEventListener('click', navToggle)
 
-// Toggle Mobile Menu
 function navToggle() {
   btn.classList.toggle('open')
   menu.classList.toggle('flex')
@@ -123,23 +123,24 @@ function navToggle() {
 }
 
 
-// ####################
 
+// ####################################
 const email = document.getElementById('email')
 const label_email = document.getElementById('label_email') 
 
 const password = document.getElementById('password')
 const label_password = document.getElementById('label_password') 
 
+
 email.addEventListener('focus',changeCone)
 email.addEventListener('focusout',changeCtwo)
 password.addEventListener('focus',changeCthree)
 password.addEventListener('focusout',changeCfour)
 
+
 function changeCone() {
   label_email.classList.add('text-accentBlue')
 }
-
 
 
 function changeCtwo() {
@@ -157,3 +158,6 @@ function changeCfour() {
 }
 
 
+
+
+// ####################
