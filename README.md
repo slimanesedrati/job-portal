@@ -13,8 +13,9 @@
 | 01  |       [Home Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/home.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/home.html) |
 | 02  |       [Jobs Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/jobs.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/jobs.html) |
 | 03  |       [Company Profile Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/company_profile.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/company_profile.html) |
-| 04  |       [User Login Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/user_login.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/user_login.html) |
-| 05  |       [User Profile Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/user_profile.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/user_profile.html) |
+| 04  |       [User Profile Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/user_profile.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/user_profile.html) |
+| 05  |       [User Login Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/user_login.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/user_login.html) |
+| 06  |       [User Register Page](https://github.com/slimanesedrati/job-portal/blob/main/templates/user_register.html) | [Live Demo](https://slimanesedrati.github.io/job-portal/templates/user_register.html) |
 
 ## Run project on localhost
 **1. Clone project**
