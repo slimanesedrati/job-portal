@@ -90,6 +90,7 @@ function show_hidde(btn,menu,down) {
   if (btn) {
     btn.addEventListener('click', function() {
       menu.classList.toggle('hidden')
+      menu.classList.toggle('md:hidden')
       down.classList.toggle('rotate-180')
     })
   }
@@ -108,14 +109,52 @@ function hidde_search(){
     search_form.classList.toggle('hidden')
 }
 
-// ########################################
+// #####################################
+
+
+const email = document.getElementById('email')
+const label_email = document.getElementById('label_email') 
+
+const password = document.getElementById('password')
+const label_password = document.getElementById('label_password') 
+
+// 
+const firstname = document.getElementById('firstname')
+const label_firstname = document.getElementById('label_firstname')
+
+const lastname = document.getElementById('lastname')
+const label_lastname = document.getElementById('label_lastname')
+
+
+
+
+label_color(email,label_email)
+label_color(password,label_password)
+
+label_color(firstname,label_firstname)
+label_color(lastname,label_lastname)
+
+
+
+function label_color (input,label){
+  if (input) {
+    input.addEventListener('focus', () => {
+    label.classList.add('text-accentBlue')
+    })
+    input.addEventListener('focusout', () => {
+      label.classList.remove('text-accentBlue')
+    })
+  }
+}
+
+
+// #################################################
 const btn = document.getElementById('menu-btn')
 const menu = document.getElementById('menu')
 
-// Toggle Mobile Menu
-
 btn.addEventListener('click', navToggle)
 
+// Toggle Mobile Menu
 function navToggle() {
   btn.classList.toggle('open')
   menu.classList.toggle('flex')
@@ -123,4 +162,5 @@ function navToggle() {
 }
 
 
+// ####################
 

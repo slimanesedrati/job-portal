@@ -629,10 +629,6 @@ p {
   bottom: 2.5rem;
 }
 
-.bottom-20 {
-  bottom: 5rem;
-}
-
 .left-0 {
   left: 0px;
 }
@@ -693,10 +689,6 @@ p {
   top: 0.75rem;
 }
 
-.top-48 {
-  top: 12rem;
-}
-
 .top-5 {
   top: 1.25rem;
 }
@@ -707,6 +699,10 @@ p {
 
 .top-\[4\.04rem\] {
   top: 4.04rem;
+}
+
+.top-\[9\.1rem\] {
+  top: 9.1rem;
 }
 
 .z-10 {
@@ -938,10 +934,6 @@ p {
           user-select: none;
 }
 
-.flex-row {
-  flex-direction: row;
-}
-
 .flex-col {
   flex-direction: column;
 }
@@ -964,6 +956,10 @@ p {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
 }
 
 .gap-3 {
@@ -1346,11 +1342,6 @@ p {
   padding-bottom: 0.25rem;
 }
 
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -1410,12 +1401,12 @@ p {
   padding-bottom: 8rem;
 }
 
-.pb-5 {
-  padding-bottom: 1.25rem;
+.pb-40 {
+  padding-bottom: 10rem;
 }
 
-.pb-56 {
-  padding-bottom: 14rem;
+.pb-5 {
+  padding-bottom: 1.25rem;
 }
 
 .pb-6 {
@@ -1436,10 +1427,6 @@ p {
 
 .pr-6 {
   padding-right: 1.5rem;
-}
-
-.pt-1 {
-  padding-top: 0.25rem;
 }
 
 .pt-10 {
@@ -1844,12 +1831,12 @@ p {
 }
 
 @media (min-width: 640px) {
-  .sm\:max-w-sm {
-    max-width: 24rem;
-  }
-
   .sm\:max-w-lg {
     max-width: 32rem;
+  }
+
+  .sm\:max-w-sm {
+    max-width: 24rem;
   }
 
   .sm\:grid-cols-2 {
@@ -1860,18 +1847,8 @@ p {
     flex-direction: row;
   }
 
-  .sm\:flex-col {
-    flex-direction: column;
-  }
-
   .sm\:justify-start {
     justify-content: flex-start;
-  }
-
-  .sm\:space-x-0 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(0px * var(--tw-space-x-reverse));
-    margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .sm\:space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -1880,14 +1857,13 @@ p {
     margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
-  .sm\:bg-white {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  }
-
   .sm\:bg-lightbg {
     --tw-bg-opacity: 1;
     background-color: hsl(45 14% 95% / var(--tw-bg-opacity));
+  }
+
+  .sm\:p-5 {
+    padding: 1.25rem;
   }
 
   .sm\:p-6 {
@@ -1898,16 +1874,9 @@ p {
     padding: 2rem;
   }
 
-  .sm\:p-10 {
-    padding: 2.5rem;
-  }
-
-  .sm\:p-5 {
-    padding: 1.25rem;
-  }
-
-  .sm\:p-2 {
-    padding: 0.5rem;
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
@@ -1928,6 +1897,14 @@ p {
     left: 4rem;
   }
 
+  .md\:top-0 {
+    top: 0px;
+  }
+
+  .md\:top-\[9\.1rem\] {
+    top: 9.1rem;
+  }
+
   .md\:mt-16 {
     margin-top: 4rem;
   }
@@ -1938,6 +1915,10 @@ p {
 
   .md\:block {
     display: block;
+  }
+
+  .md\:flex {
+    display: flex;
   }
 
   .md\:hidden {
@@ -1958,6 +1939,10 @@ p {
 
   .md\:max-w-lg {
     max-width: 32rem;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:flex-row {
@@ -2049,6 +2034,11 @@ p {
     padding-right: 0px;
   }
 
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   .md\:pb-0 {
     padding-bottom: 0px;
   }
@@ -2059,12 +2049,6 @@ p {
 
   .md\:text-left {
     text-align: left;
-  }
-
-  .md\:shadow-md {
-    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 }
 
@@ -2097,16 +2081,16 @@ p {
     max-width: 28rem;
   }
 
-  .lg\:max-w-lg {
-    max-width: 32rem;
-  }
-
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .lg\:flex-row {
@@ -2149,10 +2133,6 @@ p {
     padding: 1.5rem;
   }
 
-  .lg\:p-8 {
-    padding: 2rem;
-  }
-
   .lg\:text-left {
     text-align: left;
   }
@@ -2188,6 +2168,10 @@ p {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .xl\:justify-between {
     justify-content: space-between;
   }
@@ -2200,6 +2184,10 @@ p {
 }
 
 @media (min-width: 1536px) {
+  .\32xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .\32xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
