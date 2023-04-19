@@ -705,6 +705,26 @@ p {
   top: 9.1rem;
 }
 
+.top-\[9\.2rem\] {
+  top: 9.2rem;
+}
+
+.top-\[9\.3rem\] {
+  top: 9.3rem;
+}
+
+.top-\[9\.5rem\] {
+  top: 9.5rem;
+}
+
+.top-\[9\.6rem\] {
+  top: 9.6rem;
+}
+
+.top-\[10rem\] {
+  top: 10rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1451,6 +1471,10 @@ p {
   padding-top: 2rem;
 }
 
+.pb-36 {
+  padding-bottom: 9rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1894,6 +1918,18 @@ p {
 
   .md\:top-\[9\.1rem\] {
     top: 9.1rem;
+  }
+
+  .md\:top-\[9\.2rem\] {
+    top: 9.2rem;
+  }
+
+  .md\:top-\[9\.11rem\] {
+    top: 9.11rem;
+  }
+
+  .md\:top-\[9\.12rem\] {
+    top: 9.12rem;
   }
 
   .md\:mt-16 {
