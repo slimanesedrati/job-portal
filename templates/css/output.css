@@ -1868,6 +1868,14 @@ p {
     left: 4rem;
   }
 
+  .md\:top-\[9\.15rem\] {
+    top: 9.15rem;
+  }
+
+  .md\:top-\[9\.12rem\] {
+    top: 9.12rem;
+  }
+
   .md\:mt-16 {
     margin-top: 4rem;
   }
