@@ -17,8 +17,8 @@ from django.db.models import Q
 # 	* api/companies/<companyName>/jobs -> Companies Jobs listing -done
 
 # 2. Jobs app:
-# 	* api/jobs -> Jobs listing -done
-# 	* api/jobs/search?<query>=<search_query> -> search
+# 	* api/jobs -> Jobs listing & jobs create -done
+# 	* api/jobs/search?params...-> search -done
 # 	* api/jobs/<job_id> -> get job details | Job's 'CRUD' if authenticated -done
 # ========================================================
 
