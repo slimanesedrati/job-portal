@@ -42,4 +42,5 @@ class CompanySerializer(serializers.ModelSerializer):
         user_info=validated_data.pop('user')
         user_info.pop('password2')
         user=User.objects.create_user(**user_info,is_company=True)
+        Token.objects.create(user=user)
         return Company.objects.create(user=user,**validated_data)

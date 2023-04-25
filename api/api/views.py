@@ -8,6 +8,7 @@ from django.db.models import Q
 from rest_framework import permissions
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
+from .permissions import IsOwnerOrReadOnly
 
 
 
@@ -49,8 +50,10 @@ def company_search(request):
 class CompanyDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
-    permission_classes=[permissions.IsAuthenticated]
+    permission_classes=[IsOwnerOrReadOnly]
     def get_object(self):
+        user = Token.objects.get(key=self.request.headers.get('Authorization').split(" ")[1]).user
+        print(user)
         return get_object_or_404(Company, pk=self.kwargs['pk'])
 
 # api/companies/<pk>/jobs
