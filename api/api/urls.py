@@ -1,6 +1,7 @@
 from django.urls import path
 from django.conf.urls import include
-from .views import CompanyList, company_search, CompanyDetail, CompanyJobList, job_list, job_search, jobs_pk
+from .views import *
+from rest_framework.authtoken import views
 
 
 urlpatterns = [
@@ -12,4 +13,8 @@ urlpatterns = [
     path('jobs/', job_list, name='jobs_list'),
     path('jobs/search/', job_search, name='job_search'),
     path('jobs/<int:pk>/', jobs_pk, name='jobs_pk'),
+]
+
+urlpatterns += [
+    path('api-token-auth/', views.obtain_auth_token)
 ]

@@ -5,6 +5,12 @@ from .serializers import OfferSerializer, CompanySerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Q
+from rest_framework import permissions
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+
+
+
 # Create your views here.
 
 #========================================================
@@ -25,7 +31,7 @@ from django.db.models import Q
 # 01. Company Views
 
 # api/companies
-class CompanyList(generics.ListAPIView):
+class CompanyList(generics.ListCreateAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
 
@@ -40,10 +46,10 @@ def company_search(request):
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 # api/companies/<companyName>
-class CompanyDetail(generics.RetrieveAPIView):
+class CompanyDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
-
+    permission_classes=[permissions.IsAuthenticated]
     def get_object(self):
         return get_object_or_404(Company, pk=self.kwargs['pk'])
 
@@ -122,3 +128,7 @@ def job_search(request):
 
     serializer = OfferSerializer(jobs, many=True)
     return Response(serializer.data)
+
+
+#========================================================
+
