@@ -20,7 +20,6 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, asLink=false, url, c
                     py-3
                     font-bold
                     bg-primary
-                    rounded-full
                     hover:opacity-70'
                     ${className}
                 `}
@@ -36,7 +35,6 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, asLink=false, url, c
                 py-3
                 font-bold
                 bg-primary
-                rounded-full
                 hover:opacity-70'
                 ${className}
             `}

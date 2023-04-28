@@ -22,8 +22,8 @@ const Navbar = () => {
           </div>
 
           <div className="hidden items-center text-sm font-bold text-mediumGray lg:flex">
-            <Button asLink url="login" className="bg-transparent text-gray-med">Login</Button>
-            <Button asLink url="signup" className="text-white">Signup</Button>
+            <Button asLink url="auth/login" className="bg-transparent text-gray-med">Login</Button>
+            <Button asLink url="auth/register" className="text-white rounded-full">Signup</Button>
           </div>
 
           <NavbarMenuButton isOpen setIsOpen={setIsOpen} />

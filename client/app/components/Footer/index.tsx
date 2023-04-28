@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
 
         {/* <!-- Social Container --> */}
-        <ul className="flex space-x-6 text-gray-light">
+        <ul className="space-x-6 text-gray-light text-xs hidden md:flex">
           <li>facebook</li>
           <li>twitter</li>
           <li>github</li>

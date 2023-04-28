@@ -1,3 +1,4 @@
+'use client'
 import styles from './NavbarMenuButton.module.css'
 
 interface NavbarMenuButtonProps {
