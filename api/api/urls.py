@@ -14,7 +14,11 @@ urlpatterns = [
     path('jobs/search/', job_search, name='job_search'),
     path('jobs/<int:pk>/', jobs_pk, name='jobs_pk'),
 ]
-
 urlpatterns += [
-    path('api-token-auth/', views.obtain_auth_token)
+    path('api-auth/', include('rest_framework.urls')),
 ]
+
+
+# urlpatterns += [
+#     path('api-token-auth/', views.obtain_auth_token)
+# ]

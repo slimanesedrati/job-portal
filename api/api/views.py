@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets, generics, status
 from .models import Offer, Company
-from .serializers import OfferSerializer, CompanySerializer
+from .serializers import OfferSerializer, CompanySerializer,CreateCompanySerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Q
 from rest_framework import permissions
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsObjectOwnerOrReadOnly
+from django.contrib.auth.models import User
+
 
 
 
@@ -34,7 +36,7 @@ from .permissions import IsOwnerOrReadOnly
 # api/companies
 class CompanyList(generics.ListCreateAPIView):
     queryset = Company.objects.all()
-    serializer_class = CompanySerializer
+    serializer_class = CreateCompanySerializer
 
 # api/companies/search?<query>=<search_query>
 @api_view(['GET'])
@@ -50,18 +52,25 @@ def company_search(request):
 class CompanyDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
-    permission_classes=[IsOwnerOrReadOnly]
-    def get_object(self):
-        user = Token.objects.get(key=self.request.headers.get('Authorization').split(" ")[1]).user
-        print(user)
-        return get_object_or_404(Company, pk=self.kwargs['pk'])
+    permission_classes=[IsObjectOwnerOrReadOnly]
+    # def get_object(self):
 
+    #     return get_object_or_404(Company, pk=self.kwargs['pk'])
+
+    
+    # def put(self, request, *args, **kwargs):
+    #     obj=self.get_object()
+    #     serializer=CompanySerializer(instance=obj,data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data,status=status.HTTP_200_OK)
+    #     else:
+    #         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 # api/companies/<pk>/jobs
-class CompanyJobList(generics.ListAPIView):
+class CompanyJobList(generics.ListCreateAPIView):
     serializer_class = OfferSerializer
     def get_queryset(self):
         company = get_object_or_404(Company, pk=self.kwargs['pk'])
-
         # If the company itself did the request, return all the offers
         if self.request.user.is_authenticated and self.request.user.company == company:
             return Offer.objects.filter(company=company)
@@ -85,6 +94,9 @@ def job_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 
 # get jobs details, update and delete "pk"
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -122,7 +134,7 @@ def job_search(request):
 
     jobs = Offer.objects.filter(is_active=True)
 
-    if query: jobs = jobs.filter(Q(title__icontains=query) | Q(company__name__icontains=query))
+    if query: jobs = jobs.filter(Q(title__icontains=query) | Q(company__cover__icontains=query))
     if offer_type: jobs = jobs.filter(offer_type=offer_type)
     if sector: jobs = jobs.filter(sector__name=sector)
     if min_salary: jobs = jobs.filter(salary__gte=min_salary)
