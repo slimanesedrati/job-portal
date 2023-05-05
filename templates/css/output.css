@@ -1868,10 +1868,6 @@ p {
     left: 4rem;
   }
 
-  .md\:top-\[9\.15rem\] {
-    top: 9.15rem;
-  }
-
   .md\:top-\[9\.12rem\] {
     top: 9.12rem;
   }
@@ -2136,12 +2132,12 @@ p {
     max-width: 100%;
   }
 
-  .xl\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .xl\:justify-between {
