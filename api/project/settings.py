@@ -115,9 +115,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    #corsheaders middleware
     "corsheaders.middleware.CorsMiddleware",
+]
+
+
+# CORS ORIGIN
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000',
+    #  'http://127.0.0.1:3000/',
+     'http://127.0.0.1:3000',
 ]
 
 ROOT_URLCONF = 'project.urls'
