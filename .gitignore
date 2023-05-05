@@ -166,3 +166,7 @@ next-env.d.ts
 # other 
 .swc/
 .vscode
+
+
+# ignore images 
+api/images/

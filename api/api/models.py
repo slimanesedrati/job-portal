@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import *
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -8,28 +8,28 @@ from django.contrib.auth.models import *
 
 #Custom User Model
 
-class User(AbstractUser):
-    is_company = models.BooleanField(default=False)
+# class User(AbstractUser):
+#     is_company = models.BooleanField(default=False)
 
-    def create_user(self, username, password, **extra_fields):
-        if not username:
-            raise ValueError('Users must have an username')
-        username = username
-        user = self.model(username=username, **extra_fields)
-        user.set_password(password)
-        user.save()
-        return user
+#     def create_user(self, username, password, **extra_fields):
+#         if not username:
+#             raise ValueError('Users must have an username')
+#         username = username
+#         user = self.model(username=username, **extra_fields)
+#         user.set_password(password)
+#         user.save()
+#         return user
 
-    def create_superuser(self, usernamw, password, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_active', True)
+#     def create_superuser(self, usernamw, password, **extra_fields):
+#         extra_fields.setdefault('is_staff', True)
+#         extra_fields.setdefault('is_superuser', True)
+#         extra_fields.setdefault('is_active', True)
 
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
-        return self.create_user(usernamw, password, **extra_fields)
+#         if extra_fields.get('is_staff') is not True:
+#             raise ValueError('Superuser must have is_staff=True.')
+#         if extra_fields.get('is_superuser') is not True:
+#             raise ValueError('Superuser must have is_superuser=True.')
+#         return self.create_user(usernamw, password, **extra_fields)
     
 
 
@@ -53,16 +53,15 @@ class Location(models.Model):
         return self.name
     
 
-class Student(models.Model):
+class Student(User):
     MALE = '1'
     FEMALE = '2'
     GENDER_TYPE_CHOICES = [
         (MALE, 'Male'),
         (FEMALE, 'female')
     ]
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='student')
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+
+
     profileImage = models.ImageField(upload_to='images', blank=True)
     age = models.IntegerField()
     gender = models.CharField(max_length=1, choices=GENDER_TYPE_CHOICES, default=MALE, blank=True)
@@ -70,20 +69,20 @@ class Student(models.Model):
     university = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self) -> str:
-        return f"{self.first_name} {self.last_name} {self.user.get_username()}"
+        return f"{self.first_name} {self.last_name} {self.username}"
     
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
      
 
 
-class Company(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='company')
+class Company(User):
+
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
 
-    logo = models.ImageField(upload_to='images', blank=True)
-    cover = models.ImageField(upload_to='images', blank=True)
+    logo = models.ImageField(upload_to='images', blank=True,null=True)
+    cover = models.ImageField(upload_to='images', blank=True,null=True)
 
     website = models.URLField(blank=True)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
