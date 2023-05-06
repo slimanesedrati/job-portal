@@ -6,11 +6,12 @@ interface ButtonProps {
     asLink?: boolean;
     url?: string;
     className?: string;
+    type?: "button" | "submit" | "reset";
 }
 
 
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, asLink=false, url, className }) => {
+const Button: React.FC<ButtonProps> = ({ children, onClick, asLink=false, url, className, type }) => {
     if (asLink) {
         return (
             <Link
@@ -30,6 +31,8 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, asLink=false, url, c
     }
     return (
         <button
+            type={type}
+            onClick={onClick}
             className={`
                 px-8
                 py-3

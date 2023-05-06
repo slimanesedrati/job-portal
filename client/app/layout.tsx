@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${font.className} bg-light`}>
+      <body className={`${font.className}`}>
         {/* <Navbar /> */}
         {/* <main id="main"> */}
           {children}
