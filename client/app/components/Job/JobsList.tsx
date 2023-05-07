@@ -1,4 +1,6 @@
 import JobCard from "./JobCard"
+import { SafeJobType } from "@/types";
+
 
 const JobsList = ({ response }: any) => {
 
@@ -8,22 +10,23 @@ const JobsList = ({ response }: any) => {
   if (error) return (<div>Something went wrong! (-_-)</div>);
   if (!data.length) return (<div>No data to show</div>)
   return (
-    <section className='container mx-auto pb-36 px-6'>
+    <section className=''>
       <div 
         className="
-          mt-10
-          px-5
+          px-10
           grid
           justify-center
           items-center
-          grid-col-1
-          md:grid-cols-2
-          lg:grid-cols-3 xl:grid-cols-4
+          grid-cols-1
+          
+          lg:grid-cols-2
+          xl:grid-cols-3
+          2xl:grid-cols-4
           gap-5
         "
       >
-        {data?.map((i:number)=>(
-          <JobCard key={i} />
+        {data?.map((item:SafeJobType, i:number)=>(
+          <JobCard key={item.id} {...item} />
         ))}
       </div>
     </section>

@@ -1,8 +1,19 @@
-export type SafeJob = {
+type JobCompanyType = {
+    name: string;
+    location: number;
+    logo: string;
+}
+export type SafeJobType = {
     id: number;
     title: string;
-    company_name: string;
-    location: string;
     salary: string;
     description: string;
+    offer_type: string;
+    sector: string;
+    educationLevel: string;
+
+    company: JobCompanyType;
+    
+
+    created_at: Date;
 }
