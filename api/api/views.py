@@ -12,7 +12,8 @@ from rest_framework.authtoken.models import Token
 from .permissions import IsObjectOwnerOrReadOnly,IsCompany,IsOfferOwner,IsStudent,IsApplicationOwner,IsCompanyApplicationOwner,IsCompanyOrReadOnly
 from django.contrib.auth.models import User
 
-
+from functools import reduce
+import operator
 
 
 
@@ -146,7 +147,7 @@ class OfferDetail(generics.RetrieveUpdateDestroyAPIView):
 def offer_search(request):
     # GET /api/offers/search?query=python&offer_type=full-time&sector=IT&min_salary=5000&max_salary=10000
     query = request.query_params.get('query', None)
-    offer_type = request.query_params.get('type', None)
+    offer_types = request.query_params.getlist('type', None)
     sector = request.query_params.get('sector', None)
     min_salary = request.query_params.get('min_slary', None)
     max_salary = request.query_params.get('max_salary', None)
@@ -155,7 +156,12 @@ def offer_search(request):
     offers = Offer.objects.filter(is_active=True)
 
     if query: offers = offers.filter(Q(title__icontains=query) | Q(company__cover__icontains=query))
-    if offer_type: offers = offers.filter(offer_type=offer_type)
+
+    if offer_types:
+        offers = offers.filter(
+            reduce(operator.or_, (Q(offer_type=ot) for ot in offer_types))
+        )
+    
     if sector: offers = offers.filter(sector__name=sector)
     if min_salary: offers = offers.filter(salary__gte=min_salary)
     if max_salary: offers = offers.filter(salary__lte=max_salary)
