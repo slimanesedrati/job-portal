@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
@@ -8,28 +8,9 @@ from django.contrib.auth.models import User
 
 #Custom User Model
 
-# class User(AbstractUser):
-#     is_company = models.BooleanField(default=False)
+class User(AbstractUser):
+    is_company = models.BooleanField(default=False)
 
-#     def create_user(self, username, password, **extra_fields):
-#         if not username:
-#             raise ValueError('Users must have an username')
-#         username = username
-#         user = self.model(username=username, **extra_fields)
-#         user.set_password(password)
-#         user.save()
-#         return user
-
-#     def create_superuser(self, usernamw, password, **extra_fields):
-#         extra_fields.setdefault('is_staff', True)
-#         extra_fields.setdefault('is_superuser', True)
-#         extra_fields.setdefault('is_active', True)
-
-#         if extra_fields.get('is_staff') is not True:
-#             raise ValueError('Superuser must have is_staff=True.')
-#         if extra_fields.get('is_superuser') is not True:
-#             raise ValueError('Superuser must have is_superuser=True.')
-#         return self.create_user(usernamw, password, **extra_fields)
     
 
 
@@ -62,7 +43,7 @@ class Student(User):
     ]
 
 
-    profileImage = models.ImageField(upload_to='images', blank=True)
+    profileImage = models.ImageField(upload_to='images', blank=True,null=True)
     age = models.IntegerField()
     gender = models.CharField(max_length=1, choices=GENDER_TYPE_CHOICES, default=MALE, blank=True)
     educationLevel = models.CharField(max_length=50, blank=True, null=True)
@@ -88,17 +69,19 @@ class Company(User):
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     
     def __str__(self) -> str:
-        return self.name
-
+        return self.name 
+       
 
 
 class Offer(models.Model):
     INTERSHIP = '1'
+    JOB = '2'
     OFFER_TYPE_CHOICES = [
-        (INTERSHIP, 'Intership')
+        (INTERSHIP, 'Intership'),
+        (JOB, 'Jon'),
     ]
 
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_query_name='Offer')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_query_name='Offer',related_name='offers')
 
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, help_text='Description about the offer')
@@ -129,7 +112,7 @@ class Application(models.Model):
     ]
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_query_name='Application')
-    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='Application')
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='applications')
     
     status = models.CharField(max_length=8, choices=STATUS_CHOICES, default=PENDING)
 

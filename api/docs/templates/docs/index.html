@@ -54,7 +54,7 @@
             </li>
             <li>
                 * api/companies/pk/jobs -> Companies Jobs listing
-                <a class="link" href='{% url "company_job_list" pk=1 %}'>Test</a>
+                <a class="link" href='{% url "company_offer_list" pk=1 %}'>Test</a>
             </li>
         </ul>
         <h4>2. Jobs app:</h4>
@@ -64,7 +64,7 @@
             </li>
             <li>
                 * api/jobs/search?query=search_query -> search and filter
-                <a class="link" href='{% url "job_search" %}?query=python&location=oran&offer_type=full-time&sector=IT&min_salary=5000&max_salary=10000'>Test</a>
+                <a class="link" href='{% url "offer_search" %}?query=python&location=oran&offer_type=full-time&sector=IT&min_salary=5000&max_salary=10000'>Test</a>
             </li>
             <li>
                 * api/jobs/job_id -> get job details | Job's 'CRUD' if authenticated
