@@ -2,27 +2,7 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.authtoken.models import Token
-
-# class UserSerializer(serializers.ModelSerializer):
-#     password = serializers.CharField(
-#      write_only=True,required=True, validators=[validate_password])
-#     password2 = serializers.CharField( write_only=True,required=True)
-#     class Meta:
-#         model = User
-#         fields = ['username','email','password','password2']
-#     def validate(self, attrs):
-#         if attrs['password'] != attrs['password2']:
-#             raise serializers.ValidationError(
-#             {"password": "Password fields didn't match."})
-#         return attrs
-#     def create(self, validated_data):
-#         user = User.objects.create_user(
-#         username=validated_data['username'],
-#         email=validated_data['email']
-#         )
-#         user.set_password(validated_data['password'])
-#         user.save()
-#         return user      
+ 
 
 class CreateCompanySerializer(serializers.ModelSerializer):
 
@@ -39,16 +19,11 @@ class CreateCompanySerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
             {"password": "Password fields didn't match."})
         return attrs
-    # def create(self, validated_data):
-    #     uvalidated_data.pop('user')
-    #     user_info.pop('password2')
-    #     user=User.objects.create_user(**user_info,is_company=True)
-    #     Token.objects.create(user=user)
-    #     return Company.objects.create(user=user,**validated_data)
     def create(self, validated_data):
         validated_data.pop('password2')
         company=Company.objects.create(**validated_data)
         company.set_password(validated_data['password'])
+        company.is_company=True
         company.save()
         return company
     
@@ -57,10 +32,68 @@ class CompanySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Company
-        fields = ["id","username",'name',"description","logo","cover","website","location"]
+        fields = ["id","username",'name',"is_company","description","logo","cover","website","location"]
+
+class CompanyOfferSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ['name','logo','location']
+
+
+class CreateOfferSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Offer
+        fields = ['id', 'title', 'description','salary','offer_type', 'sector', 'educationLevel', 'start_date', 'end_date', 'created_at',]
 
 
 class OfferSerializer(serializers.ModelSerializer):
+    company=CompanyOfferSerializer(many=False,read_only=True)
     class Meta:
         model = Offer
-        fields = ['id', 'company', 'title', 'description', 'salary', 'offer_type', 'sector', 'educationLevel', 'start_date', 'end_date', 'created_at',]
+        fields = ['id', 'title', 'description','company','salary','offer_type', 'sector', 'educationLevel', 'start_date', 'end_date', 'created_at',]
+
+
+
+class CreateStudentSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(
+     write_only=True,required=True, validators=[validate_password])
+    password2 = serializers.CharField(write_only=True,required=True)
+
+    class Meta:
+        model=Student
+        fields=["id","username",'first_name','last_name','age','gender','educationLevel','university','profileImage','password','password2']
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError(
+            {"password": "Password fields didn't match."})
+        return attrs
+    def create(self, validated_data):
+        validated_data.pop('password2')
+        student=Student.objects.create(**validated_data)
+        student.set_password(validated_data['password'])
+        student.save()
+        return student
+    
+
+
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Student
+        fields=["id","username",'first_name','last_name','age','gender','educationLevel','university','profileImage']
+
+class CreateApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Application
+        fields=['id','offer','status']
+
+
+
+class ApplicationSerializer(serializers.ModelSerializer):
+    offer=serializers.SlugRelatedField(slug_field='title',read_only=True)
+    student=serializers.SlugRelatedField(slug_field='username',read_only=True)
+    
+    class Meta:
+        model = Application
+        fields='__all__'
