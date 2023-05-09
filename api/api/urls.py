@@ -2,7 +2,6 @@ from django.urls import path
 from django.conf.urls import include
 from .views import *
 from rest_framework.authtoken import views
-from .views import *
 
 urlpatterns = [
     path('companies/', company_list, name="companies_list"),
@@ -24,14 +23,9 @@ urlpatterns = [
 
     path('application/<int:pk>/', ApplicationDetail.as_view(), name='applications_pk'),
 
-
-
-
-
-
 ]
 
 
-# urlpatterns += [
-#     path('api-token-auth/', views.obtain_auth_token)
-# ]
+urlpatterns += [
+    path('auth/', include('rest_framework.urls')),
+]
