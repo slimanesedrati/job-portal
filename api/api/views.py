@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from rest_framework import viewsets, generics, status
+from django.shortcuts import  get_object_or_404
+from rest_framework import generics, status
 from .models import Offer, Company,Student,Application
 from .serializers import OfferSerializer, CompanySerializer,CreateCompanySerializer,CreateOfferSerializer,StudentSerializer,CreateStudentSerializer,ApplicationSerializer,CreateApplicationSerializer
 from rest_framework.decorators import api_view
@@ -7,36 +7,12 @@ from rest_framework.response import Response
 from django.db.models import Q
 from rest_framework import permissions
 from rest_framework.decorators import permission_classes
-from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
 from .permissions import IsObjectOwnerOrReadOnly,IsCompany,IsOfferOwner,IsStudent,IsApplicationOwner,IsCompanyApplicationOwner,IsCompanyOrReadOnly
-from django.contrib.auth.models import User
-
-from functools import reduce
-import operator
-
-
 
 
 # Create your views here.
 
-#========================================================
-# Api Endpoints
-
-# 1. Company app:
-# 	* api/companies -> get companies listing  -done
-# 	* api/companies/search?<query>=<search_query> -> search company -done
-# 	* api/companies/<companyName> -> company details and informations -done
-# 	* api/companies/<companyName>/jobs -> Companies Jobs listing -done
-
-# 2. Jobs app:
-# 	* api/jobs -> Jobs listing & jobs create -done
-# 	* api/jobs/search?params...-> search -done
-# 	* api/jobs/<job_id> -> get job details | Job's 'CRUD' if authenticated -done
-# ========================================================
-
 # 01. Company Views
-
 # api/companies
     
 @api_view(['GET', 'POST'])
@@ -147,9 +123,9 @@ class OfferDetail(generics.RetrieveUpdateDestroyAPIView):
 def offer_search(request):
     # GET /api/offers/search?query=python&offer_type=full-time&sector=IT&min_salary=5000&max_salary=10000
     query = request.query_params.get('query', None)
-    offer_types = request.query_params.getlist('type', None)
+    offer_type = request.query_params.get('type', None)
     sector = request.query_params.get('sector', None)
-    min_salary = request.query_params.get('min_slary', None)
+    min_salary = request.query_params.get('min_salary', None)
     max_salary = request.query_params.get('max_salary', None)
     location = request.query_params.get('location', None)
 
@@ -157,11 +133,7 @@ def offer_search(request):
 
     if query: offers = offers.filter(Q(title__icontains=query) | Q(company__cover__icontains=query))
 
-    if offer_types:
-        offers = offers.filter(
-            reduce(operator.or_, (Q(offer_type=ot) for ot in offer_types))
-        )
-    
+    if offer_type: offers = offers.filter(offer_type=offer_type)
     if sector: offers = offers.filter(sector__name=sector)
     if min_salary: offers = offers.filter(salary__gte=min_salary)
     if max_salary: offers = offers.filter(salary__lte=max_salary)
