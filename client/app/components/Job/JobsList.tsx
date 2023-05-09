@@ -1,3 +1,4 @@
+import { Loading } from "..";
 import JobCard from "./JobCard"
 import { SafeJobType } from "@/types";
 
@@ -6,7 +7,7 @@ const JobsList = ({ response }: any) => {
 
   const { data, error, isLoading } = response
 
-  if (isLoading) return (<div>Loading...</div>);
+  if (isLoading) return (<Loading />);
   if (error) return (<div>Something went wrong! (-_-)</div>);
   if (!data.length) return (<div>No data to show</div>)
   return (

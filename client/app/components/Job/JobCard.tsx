@@ -1,28 +1,22 @@
 'user client'
-import Image from "next/image"
 import Button from "../Button"
 import { SafeJobType } from "@/types"
 import moment from "moment"
+import Avatar from "../Avatar"
 
 
-const JobCard: React.FC<SafeJobType> = ({ title, salary, created_at, description, company }) => {
+const JobCard: React.FC<SafeJobType> = ({ title, salary, created_at, description, company, offer_type, sector }) => {
     return (
         <div className="relative border border-gray-300 flex flex-col space-y-3 p-5 duration-200 hover:border-blue rounded-xl hover:shadow-md bg-white">
             {/* Card Header */}
             <span className="absolute text-gray-med right-5 top-5 text-xs"> {moment(created_at).fromNow()} </span>
-            <figure className="bg-zinc-100 w-[40px] h-[40px] rounded-full p-1 object-cover overflow-hidden grid place-items-center">
-                {company?.logo?(
-                    <Image src={`http://127.0.0.1:8000${company.logo}`} className="" width={40} height={40} alt={company?.name} />
-                ):(
-                    <Image src="./next.svg" className="" width={40} height={40} alt="Next logo" />
-                )}
-            </figure>
+            <Avatar name={company?.name} logo_url={company?.logo} />
 
             {/* Card Content */}
             <h3 className="capitalize font-bold text-md mb-4"> {title} </h3>
             <div className="flex gap-1">
-                <span className="bg-sky-100 px-3 py-1 text-xs  text-primary rounded-xl">Full-time</span>
-                <span className="bg-pink-100 px-3 py-1 text-xs text-pink-900 rounded-xl">Technology</span>
+                <span className="bg-sky-100 px-3 py-1 text-xs  text-primary rounded-xl">{offer_type}</span>
+                <span className="bg-pink-100 px-3 py-1 text-xs text-pink-900 rounded-xl">{sector}</span>
             </div>
 
             <div className="flex items-center space-x-2 text-gray-500">

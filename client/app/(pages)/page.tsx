@@ -1,4 +1,4 @@
-import { HomeHerro, HomeHowToUse, JobCard } from "../components"
+import { HomeHerro, HomeHowToUse } from "../components"
 
 
 
@@ -7,7 +7,6 @@ export default function Home() {
     <div className="w-full h-full bg-light">
       <HomeHerro />
       <HomeHowToUse />
-      <JobCard />
     </div>
   )
 }

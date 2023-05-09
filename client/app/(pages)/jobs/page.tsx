@@ -25,7 +25,7 @@ const Jobs = () => {
   const [minSalary, setMinSalary] = useState(searchParams.get('minSalary') || '')
   const [maxSalary, setMaxSalary] = useState(searchParams.get('maxSalary') || '')
   
-  const response = useSWR(`${BASEURL}/offers/search/?query=${query}&location=${where}&offer_type=${offerType}&sector=${sector}&min_salary=${minSalary}&max_salary=${maxSalary}`, fetcher);
+  const response = useSWR(`${BASEURL}/offers/search/?query=${query}&location=${where}&type=${offerType}&sector=${sector}&min_salary=${minSalary}&max_salary=${maxSalary}`, fetcher);
   
   
   
@@ -66,7 +66,7 @@ const Jobs = () => {
         <div className='w-full'>
           <div className="md:sticky md:top-[9.12rem] bg-white pt-5 pb-5 lg:pb-2 z-10 flex flex-col md:flex-row space-y-2 md:sapce-y-0   justify-between items-center md:space-x-8">
             <div className="text-veryDarkBlue font-bold text-xl">
-              Recomended jobs <span className=" md:pl-2 text-gray-400">520</span>
+              Recomended jobs <span className=" md:pl-2 text-gray-400">{response.data?.length}</span>
             </div>
             <div className="flex items-center text-sm justify-center space-x-1 text-gray-400">
               <div className='flex gap-1'>
