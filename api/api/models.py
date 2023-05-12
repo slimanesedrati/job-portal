@@ -35,8 +35,8 @@ class Location(models.Model):
     
 
 class Student(User):
-    MALE = '1'
-    FEMALE = '2'
+    MALE = "1"
+    FEMALE = "2"
     GENDER_TYPE_CHOICES = [
         (MALE, 'Male'),
         (FEMALE, 'female')
@@ -74,11 +74,11 @@ class Company(User):
 
 
 class Offer(models.Model):
-    INTERSHIP = '1'
-    JOB = '2'
+    INTERSHIP = "1"
+    JOB = "2"
     OFFER_TYPE_CHOICES = [
         (INTERSHIP, 'Intership'),
-        (JOB, 'Jon'),
+        (JOB, 'Job'),
     ]
 
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_query_name='Offer',related_name='offers')
@@ -102,9 +102,9 @@ class Offer(models.Model):
     
 
 class Application(models.Model):
-    PENDING = 'pending'
-    ACCEPTED = 'accepted'
-    REJECTED = 'rejected'
+    PENDING = "1"
+    ACCEPTED = "2"
+    REJECTED = "3"
     STATUS_CHOICES = [
         (PENDING, 'Pending'),
         (ACCEPTED, 'Accepted'),
@@ -114,7 +114,7 @@ class Application(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_query_name='Application')
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE, related_name='applications')
     
-    status = models.CharField(max_length=8, choices=STATUS_CHOICES, default=PENDING)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
 
     def __str__(self) -> str:
         return f"{self.student.get_full_name()} x {self.offer.title}"
