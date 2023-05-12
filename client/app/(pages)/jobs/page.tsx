@@ -4,16 +4,14 @@ import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import {  Filters, JobsList, Search } from '@/app/components'
 import useSWR from 'swr'
-import axios from 'axios'
 import { SafeJobType } from '@/types'
+import { getBaseUrl, getFetcher } from '@/app/utils'
 
 interface JobsProps {
   jobs: SafeJobType[];
 }
 
-const BASEURL:string = "http://127.0.0.1:8000/api"
-
-const fetcher = (url:string) => axios.get<SafeJobType[]>(url).then((res) => res.data)
+const BASEURL:string = getBaseUrl()
 
 const Jobs = () => {
   const searchParams = useSearchParams()
@@ -25,7 +23,7 @@ const Jobs = () => {
   const [minSalary, setMinSalary] = useState(searchParams.get('minSalary') || '')
   const [maxSalary, setMaxSalary] = useState(searchParams.get('maxSalary') || '')
   
-  const response = useSWR(`${BASEURL}/offers/search/?query=${query}&location=${where}&type=${offerType}&sector=${sector}&min_salary=${minSalary}&max_salary=${maxSalary}`, fetcher);
+  const response = useSWR(`${BASEURL}/offers/search/?query=${query}&location=${where}&type=${offerType}&sector=${sector}&min_salary=${minSalary}&max_salary=${maxSalary}`, getFetcher);
   
   
   

@@ -5,9 +5,9 @@ import Link from "next/link"
 const NavbarList = () => {
   return (
     <div className="hidden text-sm  space-x-8 font-bold lg:flex">
-        <Link href="/jobs" className="text-gray-med hover:text-black">Jobs</Link>
-        <Link href="#inter" className="text-gray-med hover:text-black">Interships</Link>
-        <Link href="#about" className="text-gray-med hover:text-black">About Us</Link>
+        <Link href="/jobs?offerType=1" className="text-gray-med hover:text-black">Jobs</Link>
+        <Link href="/jobs?offerType=2" className="text-gray-med hover:text-black">Interships</Link>
+        <Link href="/auth/company/register" className="text-gray-med hover:text-black">Company | Post jobs</Link>
     </div>
   )
 }
