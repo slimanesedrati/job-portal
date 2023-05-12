@@ -48,6 +48,8 @@ class CreateOfferSerializer(serializers.ModelSerializer):
 
 class OfferSerializer(serializers.ModelSerializer):
     company=CompanyOfferSerializer(many=False,read_only=True)
+    sector=serializers.StringRelatedField()
+    offer_type=serializers.CharField(source='get_offer_type_display')
     class Meta:
         model = Offer
         fields = ['id', 'title', 'description','company','salary','offer_type', 'sector', 'educationLevel', 'start_date', 'end_date', 'created_at',]
@@ -79,6 +81,7 @@ class CreateStudentSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    gender=serializers.CharField(source='get_gender_display')
     class Meta:
         model=Student
         fields=["id","username",'first_name','last_name','age','gender','educationLevel','university','profileImage']
@@ -91,6 +94,7 @@ class CreateApplicationSerializer(serializers.ModelSerializer):
 
 
 class ApplicationSerializer(serializers.ModelSerializer):
+    status=serializers.CharField(source='get_status_display')
     offer=serializers.SlugRelatedField(slug_field='title',read_only=True)
     student=serializers.SlugRelatedField(slug_field='username',read_only=True)
     
