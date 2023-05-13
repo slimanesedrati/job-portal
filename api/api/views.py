@@ -1,7 +1,7 @@
 from django.shortcuts import  get_object_or_404
 from rest_framework import generics, status
 from .models import Offer, Company,Student,Application
-from .serializers import OfferSerializer, CompanySerializer,CreateCompanySerializer,CreateOfferSerializer,StudentSerializer,CreateStudentSerializer,ApplicationSerializer,CreateApplicationSerializer
+from .serializers import OfferSerializer, CompanySerializer,CreateCompanySerializer,CreateOfferSerializer,StudentSerializer,CreateStudentSerializer,ApplicationSerializer,CreateApplicationSerializer,UpdateApplicationSerializer,UpdateOfferSerializer,UpdateStudentSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Q
@@ -79,14 +79,25 @@ class CompanyApplications(generics.ListAPIView):
                 queryset.append(application)
         return queryset
     
-# Application/<int:pk> detail & edits for Companies
+# Applications detail for Companies
 
 #api/company/applications/<int:pk>/
 
-class CompanyApplicationsDetail(generics.RetrieveUpdateDestroyAPIView):
+class CompanyApplicationsDetail(generics.RetrieveDestroyAPIView):
     serializer_class=ApplicationSerializer
     permission_classes=[permissions.IsAuthenticated,IsCompany,IsCompanyApplicationOwner]
     queryset=Application.objects.all()
+
+
+# Applications edits for Companies
+#api/company/applications/<int:pk>/edit/
+
+class CompanyApplicationsUpdate(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class=UpdateApplicationSerializer
+    permission_classes=[permissions.IsAuthenticated,IsCompany,IsCompanyApplicationOwner]
+    queryset=Application.objects.all()
+
+
 # 02. Jobs Views
 
 # api/offers/
@@ -108,13 +119,21 @@ def offer_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# get offers details, update and delete "pk"
+# get offers details and delete "pk"
 
 #api/offers/<int:pk>/
 
-class OfferDetail(generics.RetrieveUpdateDestroyAPIView):
+class OfferDetail(generics.RetrieveAPIView):
     queryset=Offer.objects.all()
     serializer_class=OfferSerializer
+
+
+# update offers "pk"
+
+#api/offers/<int:pk>/update/
+class OfferUpdate(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Offer.objects.all()
+    serializer_class=UpdateOfferSerializer
     permission_classes=[permissions.IsAuthenticatedOrReadOnly,IsCompanyOrReadOnly,IsOfferOwner]
 
 
@@ -166,16 +185,25 @@ def studentList(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# Student details & edits
+# Student details 
 
 # api/students/<int:pk>/
 
 
-class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
+class StudentDetail(generics.RetrieveAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    permission_classes=[permissions.IsAuthenticatedOrReadOnly,IsObjectOwnerOrReadOnly]
 
+
+# Student edits
+
+# api/students/<int:pk>/edit/
+
+
+class StudentUpdate(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = UpdateStudentSerializer
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly,IsObjectOwnerOrReadOnly]
 
 
 # Applications Views
@@ -208,16 +236,26 @@ class ApplicationList(generics.ListAPIView):
         return queryset
 
         
-#Application  detail & edits for Students        
+#Application  detail Students and Company        
 
-# Application/<int:pk> 
+# Application/<int:pk>/ 
 
-class ApplicationDetail(generics.RetrieveDestroyAPIView):
+class ApplicationDetail(generics.RetrieveAPIView):
     serializer_class=ApplicationSerializer
     queryset=Application.objects.all()
     permission_classes=[permissions.IsAuthenticated,IsStudent,IsApplicationOwner]
 
     
+
+        
+#Application edits for Students        
+
+# Application/<int:pk>/update/ 
+
+class ApplicationUpdate(generics.RetrieveDestroyAPIView):
+    serializer_class=ApplicationSerializer
+    queryset=Application.objects.all()
+    permission_classes=[permissions.IsAuthenticated,IsStudent,IsApplicationOwner]
 
 
 

@@ -32,7 +32,8 @@ class CompanySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Company
-        fields = ["id","username",'name',"is_company","description","logo","cover","website","location"]
+        fields = ["id","username",'name',"description","logo","cover","website","location"]
+
 
 class CompanyOfferSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,11 +46,18 @@ class CreateOfferSerializer(serializers.ModelSerializer):
         model = Offer
         fields = ['id', 'title', 'description','salary','offer_type', 'sector', 'educationLevel', 'start_date', 'end_date', 'created_at',]
 
-
 class OfferSerializer(serializers.ModelSerializer):
     company=CompanyOfferSerializer(many=False,read_only=True)
-    sector=serializers.StringRelatedField()
+    sector = serializers.StringRelatedField()
     offer_type=serializers.CharField(source='get_offer_type_display')
+    class Meta:
+        model = Offer
+        fields = ['id','title', 'description','company','salary','offer_type', 'sector', 'educationLevel', 'start_date', 'end_date', 'created_at',]
+
+    
+
+class UpdateOfferSerializer(serializers.ModelSerializer):
+    company=CompanyOfferSerializer(many=False,read_only=True)
     class Meta:
         model = Offer
         fields = ['id', 'title', 'description','company','salary','offer_type', 'sector', 'educationLevel', 'start_date', 'end_date', 'created_at',]
@@ -63,7 +71,7 @@ class CreateStudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=Student
-        fields=["id","username",'first_name','last_name','age','gender','educationLevel','university','profileImage','password','password2']
+        fields=["username",'first_name','last_name','age','gender','educationLevel','university','profileImage','password','password2']
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
             raise serializers.ValidationError(
@@ -76,8 +84,10 @@ class CreateStudentSerializer(serializers.ModelSerializer):
         student.save()
         return student
     
-
-
+class UpdateStudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Student
+        fields=["username",'first_name','last_name','age','gender','educationLevel','university','profileImage']
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -91,6 +101,11 @@ class CreateApplicationSerializer(serializers.ModelSerializer):
         model = Application
         fields=['id','offer','status']
 
+class UpdateApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Application
+        fields='__all__'
+        read_only_fields = ['offer','student']
 
 
 class ApplicationSerializer(serializers.ModelSerializer):
