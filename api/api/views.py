@@ -1,14 +1,14 @@
 from django.shortcuts import  get_object_or_404
 from rest_framework import generics, status
-from .models import Offer, Company,Student,Application
+from .models import Offer, Company,Student,Application,User
 from .serializers import OfferSerializer, CompanySerializer,CreateCompanySerializer,CreateOfferSerializer,StudentSerializer,CreateStudentSerializer,ApplicationSerializer,CreateApplicationSerializer,UpdateApplicationSerializer,UpdateOfferSerializer,UpdateStudentSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Q
 from rest_framework import permissions
 from rest_framework.decorators import permission_classes
-from .permissions import IsObjectOwnerOrReadOnly,IsCompany,IsOfferOwner,IsStudent,IsApplicationOwner,IsCompanyApplicationOwner,IsCompanyOrReadOnly
-
+from .permissions import IsStudentObjectOwnerOrReadOnly,IsCompanyObjectOwnerOrReadOnly,IsCompany,IsOfferOwner,IsStudent,IsApplicationOwner,IsCompanyApplicationOwner,IsCompanyOrReadOnly,IsStudentOrReadOnly
+from rest_framework.authtoken.models import Token
 
 # Create your views here.
 
@@ -44,7 +44,7 @@ def company_search(request):
 class CompanyDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
-    permission_classes=[permissions.IsAuthenticatedOrReadOnly,IsObjectOwnerOrReadOnly]
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly,IsCompanyOrReadOnly,IsCompanyObjectOwnerOrReadOnly]
 
 # api/companies/<pk>/jobs
 class CompanyOfferList(generics.ListAPIView):
@@ -83,7 +83,7 @@ class CompanyApplications(generics.ListAPIView):
 
 #api/company/applications/<int:pk>/
 
-class CompanyApplicationsDetail(generics.RetrieveDestroyAPIView):
+class CompanyApplicationsDetail(generics.RetrieveAPIView):
     serializer_class=ApplicationSerializer
     permission_classes=[permissions.IsAuthenticated,IsCompany,IsCompanyApplicationOwner]
     queryset=Application.objects.all()
@@ -203,7 +203,7 @@ class StudentDetail(generics.RetrieveAPIView):
 class StudentUpdate(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = UpdateStudentSerializer
-    permission_classes=[permissions.IsAuthenticatedOrReadOnly,IsObjectOwnerOrReadOnly]
+    permission_classes=[permissions.IsAuthenticatedOrReadOnly,IsStudentOrReadOnly,IsStudentObjectOwnerOrReadOnly]
 
 
 # Applications Views
@@ -215,7 +215,7 @@ class StudentUpdate(generics.RetrieveUpdateDestroyAPIView):
 class CreateApplication(generics.CreateAPIView):
     queryset=Application.objects.all()
     serializer_class=CreateApplicationSerializer
-
+    permission_classes=[permissions.IsAuthenticated,IsStudent]
     def perform_create(self, serializer):
         student=Student.objects.get(pk=self.request.user.id)
         return Application.objects.create(student=student,**serializer.validated_data)
@@ -253,10 +253,21 @@ class ApplicationDetail(generics.RetrieveAPIView):
 # Application/<int:pk>/update/ 
 
 class ApplicationUpdate(generics.RetrieveDestroyAPIView):
-    serializer_class=ApplicationSerializer
+    serializer_class=UpdateApplicationSerializer
     queryset=Application.objects.all()
     permission_classes=[permissions.IsAuthenticated,IsStudent,IsApplicationOwner]
 
 
 
 
+#logout view
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
+def logOut(request):
+    token = Token.objects.get(key=request.auth)
+    user=token.user
+    if user:
+        token.delete()
+        return Response({'info':'Succefully logged Out!'},status=status.HTTP_200_OK)
+    else:
+        return Response('Expired Token',status=status.HTTP_400_BAD_REQUEST)

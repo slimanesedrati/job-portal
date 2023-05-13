@@ -10,7 +10,7 @@ urlpatterns = [
     path('companies/<int:pk>/offers/', CompanyOfferList.as_view(), name="company_offer_list"),
     path('company/applications/', CompanyApplications.as_view(), name="company_applications"),
     path('company/applications/<int:pk>/', CompanyApplicationsDetail.as_view(), name="company_applications_detail"),
-    path('company/applications/<int:pk>/edit/', CompanyApplicationsUpdate.as_view(), name="company_applications_update"),
+    path('company/applications/<int:pk>/update/', CompanyApplicationsUpdate.as_view(), name="company_applications_update"),
 
     path('offers/', offer_list, name='offers_list'),
     path('offers/search/', offer_search, name='offer_search'),
@@ -26,6 +26,9 @@ urlpatterns = [
 
     path('application/<int:pk>/', ApplicationDetail.as_view(), name='applications_pk'),
     path('application/<int:pk>/update/', ApplicationUpdate.as_view(), name='applications_pk_update'),
+    path('login/', views.obtain_auth_token,name='login'),
+    path('logout/', logOut,name='logOut'),
+
 
 ]
 
