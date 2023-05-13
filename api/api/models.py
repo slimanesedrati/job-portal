@@ -44,7 +44,7 @@ class Student(User):
 
 
     profileImage = models.ImageField(upload_to='images', blank=True,null=True)
-    age = models.IntegerField()
+    age = models.IntegerField(null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_TYPE_CHOICES, default=MALE, blank=True)
     educationLevel = models.CharField(max_length=50, blank=True, null=True)
     university = models.CharField(max_length=50, blank=True, null=True)
