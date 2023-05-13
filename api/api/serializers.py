@@ -38,7 +38,7 @@ class CompanySerializer(serializers.ModelSerializer):
 class CompanyOfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        fields = ['name','logo','location']
+        fields = ['id', 'name','logo','location']
 
 
 class CreateOfferSerializer(serializers.ModelSerializer):
