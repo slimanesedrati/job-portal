@@ -77,7 +77,7 @@ const Filters:React.FC<IFilters> = ({
                 >
                   <option value="" selected>All</option>
                   <option value="IT" >IT</option>
-                  <option value="financial" >Financial</option>
+                  <option value="Financial" >Financial</option>
                 </select>
               </div>
             </div>

@@ -12,7 +12,7 @@ interface IParapms {
 }
 
 
-const InputField:React.FC<IParapms> = ({ label, labelFor, placeholder, type='text', name, inputProps, error }) => {
+const InputField:React.FC<IParapms> = ({ label, labelFor, placeholder, type='text', name, inputProps, error, value, setValue }) => {
 
     return (
         <div className="m relative py-3 text-gray-dark">
@@ -36,7 +36,7 @@ const InputField:React.FC<IParapms> = ({ label, labelFor, placeholder, type='tex
                 name={name}
                 placeholder={placeholder}
                 {...inputProps}
-                // value={value}
+                value={value}
                 // onChange={(e)=>setValue(e.target.value)}
                 className="
                     py-3 px-5

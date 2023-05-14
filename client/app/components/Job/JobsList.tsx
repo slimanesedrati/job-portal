@@ -26,7 +26,7 @@ const JobsList = ({ response }: any) => {
           gap-5
         "
       >
-        {data?.map((item:SafeJobType, i:number)=>(
+        {data?.map((item:SafeJobType)=>(
           <JobCard key={item.id} {...item} />
         ))}
       </div>
