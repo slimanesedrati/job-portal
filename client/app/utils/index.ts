@@ -28,3 +28,13 @@ export const createNewStudent = async (data: FormData):Promise<AxiosResponse | A
         return error as AxiosError;
     }
 }
+
+
+export const getToken = async (data: FormData): Promise<AxiosError | AxiosResponse>  => {
+    try{
+        const response = await axios.post(`${BASEURL}/login/`, data)
+        return response
+    }catch (error){
+        return error as AxiosError;
+    }
+}
