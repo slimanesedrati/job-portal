@@ -28,6 +28,8 @@ urlpatterns = [
     path('application/<int:pk>/update/', ApplicationUpdate.as_view(), name='applications_pk_update'),
     path('login/', views.obtain_auth_token,name='login'),
     path('logout/', logOut,name='logOut'),
+    path('user_details/', get_user_details,name='get_user_details'),
+
 
 
 ]

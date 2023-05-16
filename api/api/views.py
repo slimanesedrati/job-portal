@@ -271,3 +271,25 @@ def logOut(request):
         return Response({'info':'Succefully logged Out!'},status=status.HTTP_200_OK)
     else:
         return Response('Expired Token',status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def get_user_details(request):
+    try:
+        user_id= Token.objects.get(key=request.auth).user.id
+
+        try:
+            user=Company.objects.get(pk=user_id)
+            serializer=CompanySerializer(user,many=False)
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        except Company.DoesNotExist:
+            try:
+                user=Student.objects.get(pk=user_id)
+                serializer=StudentSerializer(user,many=False)
+                return Response(serializer.data,status=status.HTTP_200_OK)
+            except Student.DoesNotExist:
+                return Response({'details':'user does not exist'},status=status.HTTP_400_BAD_REQUEST)        
+                        
+    except Token.DoesNotExist:
+        return Response({'details':'invalid token'},status=status.HTTP_400_BAD_REQUEST)
+    
