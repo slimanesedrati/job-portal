@@ -3,9 +3,11 @@ import { create } from 'zustand';
 interface AuthState {
   isAuthenticated: boolean;
   setIsAuthenticated: (value: boolean) => void;
-  token: string | unknown;
+  token: string | null;
   storeToken: (token: string) => void;
   removeToken: () => void;
+  user: any;
+  storeUser: (user: any) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => {
@@ -16,25 +18,24 @@ export const useAuthStore = create<AuthState>((set) => {
   return {
     token: token,
 
+    user: [],
+    storeUser: (user: any) => set({user: user}),
+    
     isAuthenticated: initialIsAuthenticated,
     setIsAuthenticated: (value: boolean) => set({ isAuthenticated: value }),
 
     storeToken: (token: string) => {
       if (isLocalStorageAvailable){
-        set({ token: token })
+        set({ token: token, isAuthenticated: true })
         localStorage.setItem('token', token);
-        set({ isAuthenticated: true });
       }
     },
     
     removeToken: () => {
       if (isLocalStorageAvailable) {
-        set({ token: "" })
+        set({ token: "", isAuthenticated: false, user: [] })
         localStorage.removeItem('token');
-        set({ isAuthenticated: false });
       }
     }
-    
-    
   }
 });

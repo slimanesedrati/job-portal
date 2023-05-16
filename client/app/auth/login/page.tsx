@@ -3,10 +3,10 @@ import { Button, InputField, Logo } from "@/app/components"
 import Link from "next/link"
 import { SlArrowLeft } from 'react-icons/sl'
 // import useSWR from 'swr'
-import  { useEffect, useRef, useState } from 'react'
+import  { useEffect, useRef } from 'react'
 import { useRouter, useSearchParams } from "next/navigation"
 import toast, { Toaster } from "react-hot-toast"
-import { getToken } from "@/app/utils"
+import { getToken, getUser } from "@/app/utils"
 import { useAuthStore } from "@/store/store"
 
 
@@ -21,21 +21,33 @@ const Login = () => {
     }, [])
 
     const storeToken = useAuthStore((state) => state.storeToken)
+    const storeUser = useAuthStore((state) => state.storeUser)
     const formRef = useRef<HTMLFormElement>(null)
     const handleSubmit = async(e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const data = new FormData(formRef.current ?? undefined);
 
-        const response = await getToken(data)
+        const getTokenResponse = await getToken(data)
 
-        if (response instanceof Error) {
-            console.log(response.response?.data)
+        if (getTokenResponse instanceof Error) {
+            console.log(getTokenResponse.response?.data)
             toast.error("This didn't work.")
         }else {
             // handle login process...
-            let token:string = response.data?.token
-            storeToken(token)
-            router.push('/?success=login')
+            let token:string = getTokenResponse.data?.token
+            // get user with this token
+            const getUserResponse = await getUser(token)
+            if (getUserResponse instanceof Error) {
+                const message: string = "Error with saving the user, please login again."
+                toast.error(message);
+                console.log('user:', getUserResponse);
+            }else {
+                storeToken(token)
+                storeUser(getUserResponse.data)
+                console.log('user:', getUserResponse);
+                
+                router.push('/?success=login')
+            }
         }
     }
     return (

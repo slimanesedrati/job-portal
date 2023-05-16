@@ -13,8 +13,8 @@ const Navbar = () => {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated);
   const removeToken = useAuthStore((state) => state.removeToken);
+  const user: any = useAuthStore((state) => state.user);
   const handleLogout = () => {
     removeToken()
     router.push('/?success=logout')
@@ -30,14 +30,17 @@ const Navbar = () => {
             <NavbarList />
           </div>
 
-          <div className="hidden items-center text-sm font-bold text-mediumGray lg:flex">
+          <div className="hidden items-center text-sm  text-mediumGray lg:flex">
             {!isAuthenticated?(
               <>
                 <Button asLink url="auth/login" className="bg-transparent text-gray-med">Login</Button>
                 <Button asLink url="auth/register" className="text-white rounded-full">Signup</Button>
               </>
             ):(
-              <Button onClick={handleLogout} className="bg-transparent rounded-full">Logout</Button>
+              <>
+                <span>Hi {user.name}</span>
+                <Button onClick={handleLogout} className="bg-transparent rounded-full">Logout</Button>
+              </>
             )}
           </div>
 

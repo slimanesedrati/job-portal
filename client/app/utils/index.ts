@@ -38,3 +38,17 @@ export const getToken = async (data: FormData): Promise<AxiosError | AxiosRespon
         return error as AxiosError;
     }
 }
+
+
+export const getUser = async (token: string): Promise<AxiosError | AxiosResponse>  => {
+    try{
+        const response = await axios.get(`${BASEURL}/user_details/`, {
+            headers: {
+                'Authorization': `Token ${token}`,
+            }
+        });
+        return response
+    }catch (error){
+        return error as AxiosError;
+    }
+}
