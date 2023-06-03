@@ -1,4 +1,15 @@
 
+const edu_btn = document.getElementById("edu_btn")
+const edu_list = document.getElementById("edu_list")
+
+edu_btn.addEventListener('click',() => edu_list.classList.toggle('hidden'))
+
+const cer_btn = document.getElementById("cer_btn")
+const cer_list = document.getElementById("cer_list")
+
+cer_btn.addEventListener('click',() => cer_list.classList.toggle('hidden'))
+
+
 // #############################################
 
 const tabs = document.querySelectorAll('.tab')
